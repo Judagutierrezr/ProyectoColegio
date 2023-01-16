@@ -1,0 +1,28 @@
+{% extends "GestionDocente/base.html"%}
+{% load static %}
+{% block content %}
+    {% for profesor in profesor %}
+
+    <div class="container">
+        <div class="row">
+          <div class="col-sm">
+            {{profesor.Nombre}}
+          </div>
+          <div class="col-sm">
+            {{profesor.Apellido}}
+          </div>
+          <div class="col-sm">
+            {{profesor.Email}}
+          </div>
+        </div>
+      </div>
+
+   
+    {% endfor %}
+
+    {% for curso in curso %}
+    <div><p>
+       <h2>{{curso.Nombre}} </h2>
+   </div>
+   {% endfor %}
+{%endblock%}
