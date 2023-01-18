@@ -1,9 +1,21 @@
 {% extends "GestionDocente/base.html"%}
 {% load static %}
 {% block content %}
+
+    {% if request.user.is_authenticated %}
     {% for profesor in profesor %}
 
-    <div class="container">
+    <ul style="color: white">
+      <li>Academico
+        <ul>
+          <li>Hoja de vida estudiantil</li>
+          <li>Historico</li>
+          <li>Indicador de desempeños </li>
+        </ul>
+      </li>
+    </ul>
+
+    <!-- <div class="container">
         <div class="row">
           <div class="col-sm">
             {{profesor.Nombre}}
@@ -15,7 +27,7 @@
             {{profesor.Email}}
           </div>
         </div>
-      </div>
+      </div> -->
 
    
     {% endfor %}
@@ -25,4 +37,9 @@
        <h2>{{curso.Nombre}} </h2>
    </div>
    {% endfor %}
+
+
+   {% else %}
+    <center> <h1 style="color: white; align-self: center; "> Logeate por favor</h1>    </center> 
+   {% endif %}
 {%endblock%}

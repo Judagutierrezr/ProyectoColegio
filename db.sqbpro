@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:\portalCIM\db.portalCIM2023" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="4726"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,34:mainGestionDocente_asignacion_de_curso"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1">CREATE TABLE &quot;GestionDocente_historico&quot; (
+	&quot;id&quot;	integer NOT NULL,
+	&quot;Fecha&quot;	date NOT NULL,
+	&quot;Hora&quot;	time NOT NULL,
+	&quot;Clasificacion&quot;	integer NOT NULL,
+	&quot;Comentario_Docente&quot;	text,
+	&quot;Comentario_Estudiante&quot;	text,
+	&quot;FaltaTipo&quot;	integer NOT NULL,
+	&quot;Compromiso_de_Estudiante&quot;	text,
+	&quot;Recurrente&quot;	bool NOT NULL,
+	&quot;Cita_Acudientes&quot;	date,
+	&quot;Puntos_negativos&quot;	integer unsigned NOT NULL CHECK(&quot;Puntos_negativos&quot; &gt;= 0),
+	&quot;Estudiante_id&quot;	bigint NOT NULL,
+	&quot;Profesor_id&quot;	integer NOT NULL,
+	PRIMARY KEY(&quot;id&quot; AUTOINCREMENT),
+	FOREIGN KEY(&quot;Profesor_id&quot;) REFERENCES &quot;auth_user&quot;(&quot;id&quot;) DEFERRABLE INITIALLY DEFERRED,
+	FOREIGN KEY(&quot;Estudiante_id&quot;) REFERENCES &quot;GestionDocente_estudiante&quot;(&quot;id&quot;) DEFERRABLE INITIALLY DEFERRED
+);</sql><current_tab id="0"/></tab_sql></sqlb_project>

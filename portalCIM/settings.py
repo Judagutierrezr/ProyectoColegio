@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 import os
 from pathlib import Path
+from django.views.decorators.csrf import csrf_exempt
+from django.contrib.messages import constants as mensajes_de_error
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,9 +26,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-qk2z=)_uk2eo6pnlz5i2u2tnzkx6=d&@ot@=41^sikib)d4__7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -120,10 +122,12 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_TMP=os.path.join(BASE_DIR, 'static')
 STATIC_URL='/static/'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+STATIC_ROOT = BASE_DIR/'staticfiles'
+STATIC_TMP=os.path.join(BASE_DIR, 'static')
+
 
 os.makedirs(STATIC_TMP, exist_ok=True)
 os.makedirs(STATIC_ROOT,exist_ok=True )
@@ -131,7 +135,7 @@ os.makedirs(STATIC_ROOT,exist_ok=True )
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 
 MEDIA_URL='/media/'
@@ -147,3 +151,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CRISPY_TEMPLATE_PACK='bootstrap4'
 
+CSRF_TRUSTED_ORIGINS = ['https://cimprofes.azurewebsites.net/']
+
+MESSAGE_TAGS={
+    mensajes_de_error.DEBUG: 'debug',
+    mensajes_de_error.INFO: 'info',
+    mensajes_de_error.SUCCESS: 'succes',
+    mensajes_de_error.WARNING: 'warning',
+    mensajes_de_error.ERROR: 'danger',
+}
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
