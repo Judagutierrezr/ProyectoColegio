@@ -15,4 +15,4 @@ urlpatterns = [
     path('cerrar_sesion', cerrar_sesion, name="cerrar_sesion"),
 
 
-] +static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 
+] +static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
