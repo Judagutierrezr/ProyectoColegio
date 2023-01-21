@@ -26,9 +26,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-qk2z=)_uk2eo6pnlz5i2u2tnzkx6=d&@ot@=41^sikib)d4__7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -44,15 +44,20 @@ INSTALLED_APPS = [
     'crispy_forms',
 ]
 
+X_FRAME_OPTIONS = "SAMEORIGIN"
+SILENCED_SYSTEM_CHECKS = ["security.W019"]
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'portalCIM.urls'
@@ -76,7 +81,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'portalCIM.wsgi.application'
 
-
+IMPORT_EXPORT_USE_TRANSACTIONS = True
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
@@ -126,6 +131,7 @@ STATIC_URL='/static/'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 STATIC_ROOT = BASE_DIR/'staticfiles'
+
 STATIC_TMP=os.path.join(BASE_DIR, 'static')
 
 
@@ -138,8 +144,8 @@ STATICFILES_DIRS = (
 
 
 
-MEDIA_URL='/media/'
-MEDIA_ROOT= os.path.join(BASE_DIR,"media")
+MEDIA_URL='/media/' 
+MEDIA_ROOT= os.path.join(BASE_DIR,'media')
 
 
 # Default primary key field type

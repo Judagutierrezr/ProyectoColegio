@@ -6,6 +6,8 @@ from django.contrib.auth import login, logout, authenticate
 from django.views.decorators.csrf import csrf_exempt
 from django.template import RequestContext
 from django.contrib import messages
+from .form import Historicoform
+from .models import Historico
 
 # Create your views here.
 def home(request):
@@ -61,3 +63,35 @@ class Vregistro(View):
 def cerrar_sesion(request):
     logout(request)
     return redirect('Home')
+
+def hojavidaestudiante(request):
+    return render(request, "GestionDocente/hojavidaestudiante.html")
+
+def historico(request):
+    data = {
+        'form' : Historicoform()
+    }
+
+    if request.method=="POST":
+        formulario= Historicoform(request.POST, request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+
+            data["mensaje"] = "Guardado"
+            messages.info(request,"Guardado con exito")
+        else :
+            data["form"] = formulario
+
+    messages.info(request,"Guardado con exito")
+    return render(request, "GestionDocente/historico.html", data)
+
+def listar_historico(request):
+
+    lista_historico = Historico.objects.all()
+    data = {
+        'lista_historico':lista_historico
+    }
+ 
+    
+    context ={'lista_historico':lista_historico}
+    return render(request, "GestionDocente/historico_list.html", context )

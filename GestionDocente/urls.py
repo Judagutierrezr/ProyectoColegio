@@ -13,6 +13,10 @@ urlpatterns = [
     path('autenticacion', Vregistro.as_view(), name="Autenticacion"),
     path('login', logear, name="Login"),
     path('cerrar_sesion', cerrar_sesion, name="cerrar_sesion"),
+    path('hojavidaestudiante', views.hojavidaestudiante, name="hojavidaestudiante"),
+    path('historico', views.historico, name="historico"),
+    path('historico_list', views.listar_historico, name="historico_list"),
+   
 
 
-] +static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
